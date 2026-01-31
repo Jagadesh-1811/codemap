@@ -42,12 +42,18 @@ function activate(context) {
                     vscode.ViewColumn.One,
                     {
                         enableScripts: true,
-                        retainContextWhenHidden: true
+                        retainContextWhenHidden: true,
+                        localResourceRoots: [vscode.Uri.file(path.join(context.extensionPath, 'lib'))]
                     }
                 );
 
+                // Get D3 URI
+                const d3Uri = panel.webview.asWebviewUri(
+                    vscode.Uri.file(path.join(context.extensionPath, 'lib', 'd3.min.js'))
+                );
+
                 // Set the webview content
-                panel.webview.html = getWebviewContent(result, panel.webview);
+                panel.webview.html = getWebviewContent(result, panel.webview, d3Uri);
 
             } catch (e) {
                 vscode.window.showErrorMessage('Error: ' + e.message);

@@ -1,0 +1,10 @@
+node_modules/
+dist/
+out/
+build/
+.vscode/
+*.vsix
+.DS_Store
+*.log
+webview/node_modules/
+extension/node_modules/

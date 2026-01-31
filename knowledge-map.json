@@ -14,11 +14,45 @@
         "path": "d:\\vs\\extension",
         "type": "folder",
         "attributes": {
-          "purpose": "Contains 3 items",
+          "purpose": "Contains 4 items",
           "folderType": "component",
           "aiGenerated": false
         },
         "children": [
+          {
+            "name": "lib",
+            "path": "d:\\vs\\extension\\lib",
+            "type": "folder",
+            "attributes": {
+              "purpose": "Contains 1 items",
+              "folderType": "component",
+              "aiGenerated": false
+            },
+            "children": [
+              {
+                "name": "d3.min.js",
+                "path": "d:\\vs\\extension\\lib\\d3.min.js",
+                "type": "file",
+                "fileCategory": "code",
+                "extension": ".js",
+                "attributes": {
+                  "layer": "Utility",
+                  "complexity": 100,
+                  "summary": "Provides d3.min utilities",
+                  "keywords": [
+                    "T",
+                    "InternMap",
+                    "InternSet",
+                    "Su",
+                    "Ru"
+                  ],
+                  "dependencies": [],
+                  "fileType": "code",
+                  "aiGenerated": false
+                }
+              }
+            ]
+          },
           {
             "name": "package-lock.json",
             "path": "d:\\vs\\extension\\package-lock.json",
@@ -583,6 +617,28 @@
   },
   "files": [
     {
+      "name": "d3.min.js",
+      "path": "d:\\vs\\extension\\lib\\d3.min.js",
+      "type": "file",
+      "fileCategory": "code",
+      "extension": ".js",
+      "attributes": {
+        "layer": "Utility",
+        "complexity": 100,
+        "summary": "Provides d3.min utilities",
+        "keywords": [
+          "T",
+          "InternMap",
+          "InternSet",
+          "Su",
+          "Ru"
+        ],
+        "dependencies": [],
+        "fileType": "code",
+        "aiGenerated": false
+      }
+    },
+    {
       "name": "package-lock.json",
       "path": "d:\\vs\\extension\\package-lock.json",
       "type": "file",
@@ -1070,14 +1126,14 @@
     }
   ],
   "projectSummary": {
-    "description": "Project with 26 analyzable files",
+    "description": "Project with 27 analyzable files",
     "techStack": [
       "JavaScript/TypeScript",
       "CSS",
       "HTML"
     ],
     "stats": {
-      "code": 11,
+      "code": 12,
       "style": 4,
       "markup": 3,
       "data": 6,
@@ -1089,7 +1145,7 @@
     "architecture": "Frontend-focused"
   },
   "stats": {
-    "totalFiles": 26,
+    "totalFiles": 27,
     "aiAnalyzed": 0
   }
 }

@@ -2,9 +2,10 @@
  * Generate webview HTML with D3.js visualization - Matching React App Design
  * @param {object} data - The knowledge map data (tree + files)
  * @param {object} webview - VS Code webview object
+ * @param {string} d3Uri - URI to local D3 library
  * @returns {string} HTML content
  */
-function getWebviewContent(data, webview) {
+function getWebviewContent(data, webview, d3Uri) {
     const filesJson = JSON.stringify(data.files || []);
     const treeJson = JSON.stringify(data.tree || null);
     const projectSummaryJson = JSON.stringify(data.projectSummary || null);
@@ -16,9 +17,9 @@ function getWebviewContent(data, webview) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-${nonce}' https://cdn.jsdelivr.net https://d3js.org; style-src 'unsafe-inline'; img-src data:; connect-src https:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-${nonce}' ${webview.cspSource}; style-src 'unsafe-inline'; img-src data:; connect-src https:;">
     <title>CodeMap Neural Engine</title>
-    <script nonce="${nonce}" src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script nonce="${nonce}" src="${d3Uri}"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -886,7 +887,7 @@ function getWebviewContent(data, webview) {
             document.getElementById('fileSummaryPanel').classList.remove('visible');
         }
         
-        // Render fixed-position map
+        // Render organized hierarchical map with small circles and arrow links
         function renderMap() {
             console.log('renderMap called, allFiles:', allFiles.length);
             const svg = d3.select('#mapVisualization');
@@ -894,7 +895,7 @@ function getWebviewContent(data, webview) {
             
             const container = svg.node().parentElement;
             const width = container.clientWidth || 800;
-            const height = Math.max(container.clientHeight || 500, 500);
+            const height = Math.max(container.clientHeight || 600, 600);
             
             console.log('SVG dimensions:', width, height);
             
@@ -904,11 +905,11 @@ function getWebviewContent(data, webview) {
             const { fileMap } = buildFileData();
             console.log('fileMap size:', fileMap.size);
             
-            // Larger values to match React webview
-            const layerHeight = 120;
-            const nodeRadius = 32;
-            const verticalPadding = 50;
-            const horizontalPadding = 80;
+            // Smaller circles for cleaner look
+            const nodeRadius = 18;
+            const layerHeight = 90;
+            const verticalPadding = 60;
+            const horizontalPadding = 60;
             
             // Group files by layer
             const layerGroups = {};
@@ -918,7 +919,18 @@ function getWebviewContent(data, webview) {
                 layerGroups[layer].push(f);
             });
             
-            // Calculate positions - centered with max spacing like React version
+            // Sort files within each layer by dependencies (topological-like ordering)
+            layerOrder.forEach(layerName => {
+                const nodes = layerGroups[layerName] || [];
+                // Sort by number of dependencies (files with fewer deps come first)
+                nodes.sort((a, b) => {
+                    const depsA = (a.attributes?.dependencies || []).length;
+                    const depsB = (b.attributes?.dependencies || []).length;
+                    return depsA - depsB;
+                });
+            });
+            
+            // Calculate positions - grid-like organized layout
             const positions = new Map();
             let currentY = verticalPadding;
             
@@ -928,10 +940,10 @@ function getWebviewContent(data, webview) {
                 
                 const layerY = currentY + layerHeight / 2;
                 const availableWidth = width - horizontalPadding * 2;
-                // Max spacing of 140px like React version
-                const nodeSpacing = nodes.length > 1 
-                    ? Math.min(availableWidth / nodes.length, 140) 
-                    : 0;
+                
+                // Calculate optimal spacing based on node count
+                const maxNodesPerRow = Math.floor(availableWidth / 70); // 70px min spacing
+                const nodeSpacing = Math.min(70, availableWidth / (nodes.length + 1));
                 const totalWidth = nodeSpacing * (nodes.length - 1);
                 const startX = (width - totalWidth) / 2;
                 
@@ -941,17 +953,31 @@ function getWebviewContent(data, webview) {
                         x: startX + i * nodeSpacing,
                         y: layerY,
                         layer: layerName,
-                        data: data
+                        data: data,
+                        index: i
                     });
                 });
                 
                 currentY += layerHeight;
             });
             
-            // Defs - improved arrow markers
+            // Defs - arrow markers for flow visualization
             const defs = svg.append('defs');
             
-            // Glow filter for links
+            // Drop shadow filter for nodes
+            const dropShadow = defs.append('filter')
+                .attr('id', 'drop-shadow')
+                .attr('x', '-50%')
+                .attr('y', '-50%')
+                .attr('width', '200%')
+                .attr('height', '200%');
+            dropShadow.append('feDropShadow')
+                .attr('dx', '0')
+                .attr('dy', '2')
+                .attr('stdDeviation', '2')
+                .attr('flood-color', 'rgba(0,0,0,0.4)');
+            
+            // Glow filter for active links
             const glowFilter = defs.append('filter')
                 .attr('id', 'link-glow')
                 .attr('x', '-50%')
@@ -965,128 +991,340 @@ function getWebviewContent(data, webview) {
             glowMerge.append('feMergeNode').attr('in', 'coloredBlur');
             glowMerge.append('feMergeNode').attr('in', 'SourceGraphic');
             
+            // Arrow markers for each layer color - clean triangular arrows
             layerOrder.forEach(layer => {
                 defs.append('marker')
                     .attr('id', 'arrow-' + layer.toLowerCase())
-                    .attr('viewBox', '0 -6 12 12')
-                    .attr('refX', 28)
+                    .attr('viewBox', '0 -5 10 10')
+                    .attr('refX', 10)
                     .attr('refY', 0)
                     .attr('orient', 'auto')
-                    .attr('markerWidth', 10)
-                    .attr('markerHeight', 10)
+                    .attr('markerWidth', 6)
+                    .attr('markerHeight', 6)
                     .append('path')
-                    .attr('d', 'M0,-5L12,0L0,5Z')
+                    .attr('d', 'M0,-5L10,0L0,5Z')
                     .attr('fill', layerColors[layer]);
             });
             
-            // Layer backgrounds
-            const layerBg = svg.append('g');
-            let bgY = verticalPadding - 15;
+            // Default arrow for links
+            defs.append('marker')
+                .attr('id', 'arrow-default')
+                .attr('viewBox', '0 -5 10 10')
+                .attr('refX', 10)
+                .attr('refY', 0)
+                .attr('orient', 'auto')
+                .attr('markerWidth', 6)
+                .attr('markerHeight', 6)
+                .append('path')
+                .attr('d', 'M0,-5L10,0L0,5Z')
+                .attr('fill', '#888');
+            
+            // Layer backgrounds with labels
+            const layerBg = svg.append('g').attr('class', 'layer-backgrounds');
+            let bgY = verticalPadding - 20;
             
             layerOrder.forEach(layerName => {
                 const nodes = layerGroups[layerName] || [];
                 if (nodes.length === 0) return;
                 
+                // Layer background
                 layerBg.append('rect')
-                    .attr('x', 25)
+                    .attr('x', 20)
                     .attr('y', bgY)
-                    .attr('width', width - 50)
-                    .attr('height', layerHeight - 10)
-                    .attr('rx', 12)
+                    .attr('width', width - 40)
+                    .attr('height', layerHeight - 8)
+                    .attr('rx', 10)
                     .attr('fill', layerColors[layerName])
-                    .attr('opacity', 0.08);
+                    .attr('opacity', 0.06);
                 
+                // Layer label on left
                 layerBg.append('text')
-                    .attr('x', 35)
-                    .attr('y', bgY + 18)
+                    .attr('x', 30)
+                    .attr('y', bgY + 16)
                     .attr('fill', layerColors[layerName])
-                    .attr('font-size', '10px')
-                    .attr('font-weight', '600')
+                    .attr('font-size', '9px')
+                    .attr('font-weight', '700')
+                    .attr('letter-spacing', '1px')
                     .text(layerName.toUpperCase());
+                
+                // Node count badge
+                layerBg.append('text')
+                    .attr('x', width - 30)
+                    .attr('y', bgY + 16)
+                    .attr('fill', layerColors[layerName])
+                    .attr('font-size', '9px')
+                    .attr('font-weight', '500')
+                    .attr('text-anchor', 'end')
+                    .attr('opacity', 0.7)
+                    .text(nodes.length + ' file' + (nodes.length !== 1 ? 's' : ''));
                 
                 bgY += layerHeight;
             });
             
-            // Build links array first (like React version - deduplicated)
-            const links = [];
-            allFiles.forEach(file => {
-                const deps = file.attributes?.dependencies || [];
-                const sourceData = fileMap.get(file.name.replace(/\.[^.]+$/, ''));
-                deps.forEach(dep => {
-                    const depClean = dep.replace(/\.[^.]+$/, '');
-                    const targetData = fileMap.get(depClean);
-                    if (targetData && sourceData && sourceData.name !== targetData.name) {
-                        const exists = links.some(l => 
-                            l.source === file.name && l.target === targetData.name
+            // Dynamic link creation function - connects all circles intelligently
+            function createDynamicLinks() {
+                const links = [];
+                const connectedNodes = new Set();
+                const positionKeys = Array.from(positions.keys());
+                
+                // Helper: Add link if not exists
+                function addLink(source, target, type = 'dependency') {
+                    if (source === target) return false;
+                    const exists = links.some(l => 
+                        (l.source === source && l.target === target) ||
+                        (l.source === target && l.target === source)
+                    );
+                    if (!exists) {
+                        const sourcePos = positions.get(source);
+                        links.push({
+                            source,
+                            target,
+                            type,
+                            sourceLayer: sourcePos?.layer || 'Utility'
+                        });
+                        connectedNodes.add(source);
+                        connectedNodes.add(target);
+                        return true;
+                    }
+                    return false;
+                }
+                
+                // Helper: Find related files by keywords/summary
+                function findRelatedFiles(file) {
+                    const related = [];
+                    const fileKeywords = file.attributes?.keywords || [];
+                    const fileSummary = (file.attributes?.summary || '').toLowerCase();
+                    const fileExt = (file.extension || '').replace('.', '');
+                    const fileBase = file.name.replace(/\.[^.]+$/, '').toLowerCase();
+                    
+                    allFiles.forEach(other => {
+                        if (other.name === file.name) return;
+                        
+                        const otherBase = other.name.replace(/\.[^.]+$/, '').toLowerCase();
+                        const otherKeywords = other.attributes?.keywords || [];
+                        const otherSummary = (other.attributes?.summary || '').toLowerCase();
+                        const otherExt = (other.extension || '').replace('.', '');
+                        
+                        let score = 0;
+                        
+                        // Same base name (e.g., App.jsx and App.css)
+                        if (fileBase === otherBase) score += 10;
+                        
+                        // Partial name match
+                        if (fileBase.includes(otherBase) || otherBase.includes(fileBase)) score += 5;
+                        
+                        // Related file types (jsx/css, js/json, etc.)
+                        const relatedTypes = {
+                            'jsx': ['css', 'js', 'json'],
+                            'js': ['jsx', 'css', 'json', 'html'],
+                            'css': ['jsx', 'js', 'html'],
+                            'html': ['css', 'js', 'jsx'],
+                            'json': ['js', 'jsx']
+                        };
+                        if (relatedTypes[fileExt]?.includes(otherExt)) score += 3;
+                        
+                        // Keyword overlap
+                        const commonKeywords = fileKeywords.filter(k => 
+                            otherKeywords.some(ok => ok.toLowerCase() === k.toLowerCase())
                         );
-                        if (!exists) {
-                            links.push({
-                                source: file.name,
-                                target: targetData.name,
-                                sourceLayer: sourceData.layer,
-                                targetLayer: targetData.layer
-                            });
+                        score += commonKeywords.length * 2;
+                        
+                        // Summary word overlap
+                        const fileWords = fileSummary.split(/\s+/).filter(w => w.length > 3);
+                        const otherWords = otherSummary.split(/\s+/).filter(w => w.length > 3);
+                        const commonWords = fileWords.filter(w => otherWords.includes(w));
+                        score += Math.min(commonWords.length, 3);
+                        
+                        if (score > 0) {
+                            related.push({ file: other, score });
+                        }
+                    });
+                    
+                    return related.sort((a, b) => b.score - a.score);
+                }
+                
+                // Step 1: Add explicit dependency links
+                allFiles.forEach(file => {
+                    const deps = file.attributes?.dependencies || [];
+                    deps.forEach(dep => {
+                        const depClean = dep.replace(/\.[^.]+$/, '');
+                        for (const key of positionKeys) {
+                            const keyBase = key.replace(/\.[^.]+$/, '');
+                            if (key === dep || keyBase === depClean || key === depClean) {
+                                addLink(file.name, key, 'dependency');
+                                break;
+                            }
+                        }
+                    });
+                });
+                
+                // Step 2: Connect related files within same layer
+                layerOrder.forEach(layerName => {
+                    const layerNodes = layerGroups[layerName] || [];
+                    if (layerNodes.length <= 1) return;
+                    
+                    layerNodes.forEach((node, i) => {
+                        // Find related files
+                        const related = findRelatedFiles(node);
+                        const sameLayerRelated = related.filter(r => 
+                            (r.file.attributes?.layer || 'Utility') === layerName
+                        ).slice(0, 2); // Max 2 connections per node in same layer
+                        
+                        sameLayerRelated.forEach(r => {
+                            addLink(node.name, r.file.name, 'related');
+                        });
+                    });
+                });
+                
+                // Step 3: Connect layers with flow arrows
+                const layerFirstNodes = {};
+                layerOrder.forEach(layerName => {
+                    const nodes = layerGroups[layerName] || [];
+                    if (nodes.length > 0) {
+                        layerFirstNodes[layerName] = nodes[0];
+                    }
+                });
+                
+                // Create flow between adjacent layers
+                for (let i = 0; i < layerOrder.length - 1; i++) {
+                    const currentLayer = layerOrder[i];
+                    const nextLayer = layerOrder[i + 1];
+                    
+                    if (layerFirstNodes[currentLayer] && layerFirstNodes[nextLayer]) {
+                        // Find best connection point between layers
+                        const currentNodes = layerGroups[currentLayer] || [];
+                        const nextNodes = layerGroups[nextLayer] || [];
+                        
+                        // Connect center nodes or find related nodes
+                        const centerCurrent = currentNodes[Math.floor(currentNodes.length / 2)];
+                        const centerNext = nextNodes[Math.floor(nextNodes.length / 2)];
+                        
+                        if (centerCurrent && centerNext) {
+                            addLink(centerCurrent.name, centerNext.name, 'flow');
+                        }
+                    }
+                }
+                
+                // Step 4: Ensure every node has at least one connection
+                allFiles.forEach(file => {
+                    if (!connectedNodes.has(file.name)) {
+                        // Find closest related file
+                        const related = findRelatedFiles(file);
+                        if (related.length > 0) {
+                            addLink(file.name, related[0].file.name, 'auto');
+                        } else {
+                            // Connect to nearest node in same layer
+                            const fileLayer = file.attributes?.layer || 'Utility';
+                            const sameLayerFiles = allFiles.filter(f => 
+                                f.name !== file.name && 
+                                (f.attributes?.layer || 'Utility') === fileLayer
+                            );
+                            if (sameLayerFiles.length > 0) {
+                                addLink(file.name, sameLayerFiles[0].name, 'layer');
+                            }
                         }
                     }
                 });
-            });
+                
+                console.log('Dynamic links created:', links.length, links);
+                return links;
+            }
             
-            // Draw links (exactly like React version)
+            // Create all links dynamically
+            const links = createDynamicLinks();
+            
+            // Draw links with clean lines and arrows
             const linkGroup = svg.append('g').attr('class', 'links');
             
-            links.forEach(link => {
+            links.forEach((link, linkIndex) => {
                 const sourcePos = positions.get(link.source);
                 const targetPos = positions.get(link.target);
                 
-                if (!sourcePos || !targetPos) return;
-                
-                const sourceColor = layerColors[sourcePos.layer] || '#888';
-                const markerName = 'arrow-' + (sourcePos.layer || 'utility').toLowerCase();
-                
-                // Calculate curve (exactly like React version)
-                const dx = targetPos.x - sourcePos.x;
-                const dy = targetPos.y - sourcePos.y;
-                
-                let pathD;
-                if (Math.abs(dx) < 20) {
-                    // Vertical line with slight curve
-                    const midY = (sourcePos.y + targetPos.y) / 2;
-                    pathD = 'M' + sourcePos.x + ',' + (sourcePos.y + nodeRadius) + 
-                            ' Q' + (sourcePos.x + 30) + ',' + midY + 
-                            ' ' + targetPos.x + ',' + (targetPos.y - nodeRadius);
-                } else {
-                    // Curved path
-                    const midX = (sourcePos.x + targetPos.x) / 2;
-                    const midY = (sourcePos.y + targetPos.y) / 2;
-                    const curveOffset = dy > 0 ? Math.min(Math.abs(dx) * 0.3, 40) : 0;
-                    pathD = 'M' + sourcePos.x + ',' + (sourcePos.y + nodeRadius) + 
-                            ' Q' + midX + ',' + (midY + curveOffset) + 
-                            ' ' + targetPos.x + ',' + (targetPos.y - nodeRadius);
+                if (!sourcePos || !targetPos) {
+                    console.log('Missing position for link:', link);
+                    return;
                 }
                 
-                // Glow line first
-                linkGroup.append('path')
-                    .attr('d', pathD)
-                    .attr('fill', 'none')
-                    .attr('stroke', sourceColor)
-                    .attr('stroke-width', 6)
-                    .attr('opacity', 0.15)
-                    .attr('filter', 'url(#link-glow)');
+                const sourceColor = layerColors[sourcePos.layer] || '#00d9ff';
+                const targetColor = layerColors[targetPos.layer] || '#00d9ff';
+                const markerName = 'arrow-' + (sourcePos.layer || 'utility').toLowerCase();
                 
-                // Main visible link
+                // Calculate angle from source to target
+                const dx = targetPos.x - sourcePos.x;
+                const dy = targetPos.y - sourcePos.y;
+                const angle = Math.atan2(dy, dx);
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                // Start point: edge of source circle
+                const startX = sourcePos.x + Math.cos(angle) * (nodeRadius + 2);
+                const startY = sourcePos.y + Math.sin(angle) * (nodeRadius + 2);
+                
+                // End point: edge of target circle (with space for arrow)
+                const endX = targetPos.x - Math.cos(angle) * (nodeRadius + 8);
+                const endY = targetPos.y - Math.sin(angle) * (nodeRadius + 8);
+                
+                // Create path based on connection type and position
+                let pathD;
+                const isSameLayer = sourcePos.layer === targetPos.layer;
+                
+                if (isSameLayer && Math.abs(dx) > 40) {
+                    // Same layer - curved arc above nodes
+                    const midX = (sourcePos.x + targetPos.x) / 2;
+                    const curveHeight = Math.min(40, Math.abs(dx) * 0.3);
+                    pathD = 'M' + startX + ',' + startY + 
+                            ' Q' + midX + ',' + (sourcePos.y - curveHeight - nodeRadius) + 
+                            ' ' + endX + ',' + endY;
+                } else if (Math.abs(dy) > Math.abs(dx) * 2) {
+                    // Mostly vertical - smooth bezier
+                    const ctrlY = (sourcePos.y + targetPos.y) / 2;
+                    const ctrlOffset = dx * 0.3;
+                    pathD = 'M' + startX + ',' + startY + 
+                            ' C' + (startX + ctrlOffset) + ',' + ctrlY + 
+                            ' ' + (endX - ctrlOffset) + ',' + ctrlY + 
+                            ' ' + endX + ',' + endY;
+                } else {
+                    // Diagonal or short distance - straight line
+                    pathD = 'M' + startX + ',' + startY + ' L' + endX + ',' + endY;
+                }
+                
+                // Style based on link type
+                let strokeWidth = 2;
+                let opacity = 0.6;
+                let dashArray = 'none';
+                
+                if (link.type === 'dependency') {
+                    strokeWidth = 2.5;
+                    opacity = 0.8;
+                } else if (link.type === 'flow') {
+                    strokeWidth = 2;
+                    opacity = 0.5;
+                    dashArray = '6,4';
+                } else if (link.type === 'related') {
+                    strokeWidth = 1.5;
+                    opacity = 0.5;
+                } else if (link.type === 'auto' || link.type === 'layer') {
+                    strokeWidth = 1.5;
+                    opacity = 0.4;
+                    dashArray = '3,3';
+                }
+                
+                // Draw the link line
                 linkGroup.append('path')
                     .attr('d', pathD)
                     .attr('fill', 'none')
                     .attr('stroke', sourceColor)
-                    .attr('stroke-width', 3)
-                    .attr('opacity', 0.8)
+                    .attr('stroke-width', strokeWidth)
+                    .attr('opacity', opacity)
+                    .attr('stroke-dasharray', dashArray)
                     .attr('stroke-linecap', 'round')
                     .attr('marker-end', 'url(#' + markerName + ')')
-                    .attr('class', 'link-path');
+                    .attr('class', 'link-path link-' + link.type)
+                    .attr('data-source', link.source)
+                    .attr('data-target', link.target);
             });
             
-            // Nodes
-            const nodeGroup = svg.append('g');
+            // Draw nodes (small circles with labels)
+            const nodeGroup = svg.append('g').attr('class', 'nodes');
             
             positions.forEach((pos, nodeId) => {
                 const data = pos.data;
@@ -1095,42 +1333,113 @@ function getWebviewContent(data, webview) {
                 const color = layerColors[pos.layer];
                 const g = nodeGroup.append('g')
                     .attr('transform', 'translate(' + pos.x + ',' + pos.y + ')')
-                    .style('cursor', 'pointer');
+                    .style('cursor', 'pointer')
+                    .attr('class', 'node-group');
                 
+                // Node outer glow on hover (hidden by default)
+                g.append('circle')
+                    .attr('r', nodeRadius + 4)
+                    .attr('fill', 'none')
+                    .attr('stroke', color)
+                    .attr('stroke-width', 2)
+                    .attr('opacity', 0)
+                    .attr('class', 'node-glow');
+                
+                // Main node circle
                 g.append('circle')
                     .attr('r', nodeRadius)
-                    .attr('fill', 'rgba(10,10,20,0.95)')
+                    .attr('fill', 'rgba(15,15,25,0.95)')
                     .attr('stroke', color)
-                    .attr('stroke-width', 3);
+                    .attr('stroke-width', 2)
+                    .attr('filter', 'url(#drop-shadow)')
+                    .attr('class', 'node-circle');
                 
-                const ext = (data.extension || '').replace('.', '').toUpperCase() || 'FILE';
+                // File extension text inside circle
+                const ext = (data.extension || '').replace('.', '').toUpperCase() || 'F';
                 g.append('text')
                     .attr('text-anchor', 'middle')
                     .attr('dy', '0.35em')
                     .attr('fill', color)
-                    .attr('font-size', '12px')
+                    .attr('font-size', '9px')
                     .attr('font-weight', '700')
                     .attr('font-family', 'Monaco, Consolas, monospace')
-                    .text(ext.slice(0, 4));
+                    .text(ext.slice(0, 3));
                 
+                // File name label below
+                const displayName = data.baseName.length > 10 ? data.baseName.slice(0, 8) + '..' : data.baseName;
                 g.append('text')
-                    .attr('y', nodeRadius + 14)
+                    .attr('y', nodeRadius + 12)
                     .attr('text-anchor', 'middle')
                     .attr('fill', '#fff')
-                    .attr('font-size', '10px')
+                    .attr('font-size', '9px')
                     .attr('font-weight', '500')
-                    .text(data.baseName.length > 12 ? data.baseName.slice(0, 10) + '..' : data.baseName);
+                    .attr('opacity', 0.9)
+                    .text(displayName);
                 
+                // Dependency count indicator (small badge)
+                const depCount = (data.dependencies || []).length;
+                const usedByCount = (data.dependents || []).length;
+                
+                if (depCount > 0 || usedByCount > 0) {
+                    // Small indicator showing connectivity
+                    g.append('circle')
+                        .attr('cx', nodeRadius - 2)
+                        .attr('cy', -nodeRadius + 2)
+                        .attr('r', 6)
+                        .attr('fill', depCount > 0 ? '#00d9ff' : '#6bcb77')
+                        .attr('opacity', 0.9);
+                    
+                    g.append('text')
+                        .attr('x', nodeRadius - 2)
+                        .attr('y', -nodeRadius + 5)
+                        .attr('text-anchor', 'middle')
+                        .attr('fill', '#fff')
+                        .attr('font-size', '7px')
+                        .attr('font-weight', '700')
+                        .text(depCount + usedByCount);
+                }
+                
+                // Hover interactions
                 g.on('mouseenter', function() {
-                    d3.select(this).select('circle').attr('stroke-width', 5);
+                    const currentNodeId = nodeId;
+                    d3.select(this).select('.node-glow').attr('opacity', 0.6);
+                    d3.select(this).select('.node-circle').attr('stroke-width', 3);
+                    
+                    // Highlight connected links, dim others
+                    linkGroup.selectAll('.link-path').each(function() {
+                        const path = d3.select(this);
+                        const source = path.attr('data-source');
+                        const target = path.attr('data-target');
+                        
+                        if (source === currentNodeId || target === currentNodeId) {
+                            path.attr('opacity', 1).attr('stroke-width', 3);
+                        } else {
+                            path.attr('opacity', 0.15);
+                        }
+                    });
                 });
                 
                 g.on('mouseleave', function() {
-                    d3.select(this).select('circle').attr('stroke-width', 3);
+                    d3.select(this).select('.node-glow').attr('opacity', 0);
+                    d3.select(this).select('.node-circle').attr('stroke-width', 2);
+                    
+                    // Reset all links
+                    linkGroup.selectAll('.link-path')
+                        .attr('opacity', 0.6)
+                        .attr('stroke-width', 2);
                 });
                 
                 g.on('click', () => showSummaryPanel(data));
             });
+            
+            // Add flow direction indicator at bottom
+            svg.append('text')
+                .attr('x', width / 2)
+                .attr('y', height - 15)
+                .attr('text-anchor', 'middle')
+                .attr('fill', 'rgba(255,255,255,0.4)')
+                .attr('font-size', '10px')
+                .text('↓ Data Flow Direction (Dependencies) ↓');
         }
         
         // Render force graph
