@@ -126,7 +126,7 @@
                 "extension": ".js",
                 "attributes": {
                   "layer": "Utility",
-                  "complexity": 30,
+                  "complexity": 43,
                   "summary": "Provides extension utilities",
                   "keywords": [],
                   "dependencies": [],
@@ -197,7 +197,7 @@
         "extension": ".md",
         "attributes": {
           "layer": "Utility",
-          "complexity": 10,
+          "complexity": 21,
           "summary": "Documentation for README",
           "keywords": [
             "Documentation"
@@ -701,7 +701,7 @@
       "extension": ".js",
       "attributes": {
         "layer": "Utility",
-        "complexity": 30,
+        "complexity": 43,
         "summary": "Provides extension utilities",
         "keywords": [],
         "dependencies": [],
@@ -768,7 +768,7 @@
       "extension": ".md",
       "attributes": {
         "layer": "Utility",
-        "complexity": 10,
+        "complexity": 21,
         "summary": "Documentation for README",
         "keywords": [
           "Documentation"
