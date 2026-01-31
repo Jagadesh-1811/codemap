@@ -16,7 +16,7 @@ function getWebviewContent(data, webview) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-${nonce}' https://cdn.jsdelivr.net; style-src 'unsafe-inline'; img-src data:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-${nonce}' https://cdn.jsdelivr.net https://d3js.org; style-src 'unsafe-inline'; img-src data:; connect-src https:;">
     <title>CodeMap Neural Engine</title>
     <script nonce="${nonce}" src="https://cdn.jsdelivr.net/npm/d3@7"></script>
     <style>
@@ -1343,6 +1343,13 @@ function getWebviewContent(data, webview) {
         
         // Initialize after a short delay to ensure DOM is ready
         setTimeout(() => {
+            // Check if D3 loaded
+            if (typeof d3 === 'undefined') {
+                console.error('D3.js failed to load!');
+                document.getElementById('mapView').innerHTML = '<div style="padding:40px;color:#ff6b6b;">Error: D3.js failed to load. Please check your internet connection.</div>';
+                return;
+            }
+            
             console.log('Initializing CodeMap, files:', allFiles.length);
             renderMapLegend();
             renderProjectSummary();
