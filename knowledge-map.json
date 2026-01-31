@@ -4,7 +4,7 @@
     "path": "d:\\vs",
     "type": "folder",
     "attributes": {
-      "purpose": "Contains 3 items",
+      "purpose": "Contains 4 items",
       "folderType": "component",
       "aiGenerated": false
     },
@@ -152,6 +152,24 @@
           ],
           "dependencies": [],
           "fileType": "data",
+          "aiGenerated": false
+        }
+      },
+      {
+        "name": "README.md",
+        "path": "d:\\vs\\README.md",
+        "type": "file",
+        "fileCategory": "documentation",
+        "extension": ".md",
+        "attributes": {
+          "layer": "Utility",
+          "complexity": 10,
+          "summary": "Documentation for README",
+          "keywords": [
+            "Documentation"
+          ],
+          "dependencies": [],
+          "fileType": "documentation",
           "aiGenerated": false
         }
       },
@@ -687,6 +705,24 @@
       }
     },
     {
+      "name": "README.md",
+      "path": "d:\\vs\\README.md",
+      "type": "file",
+      "fileCategory": "documentation",
+      "extension": ".md",
+      "attributes": {
+        "layer": "Utility",
+        "complexity": 10,
+        "summary": "Documentation for README",
+        "keywords": [
+          "Documentation"
+        ],
+        "dependencies": [],
+        "fileType": "documentation",
+        "aiGenerated": false
+      }
+    },
+    {
       "name": "eslint.config.js",
       "path": "d:\\vs\\webview\\eslint.config.js",
       "type": "file",
@@ -1034,7 +1070,7 @@
     }
   ],
   "projectSummary": {
-    "description": "Project with 25 analyzable files",
+    "description": "Project with 26 analyzable files",
     "techStack": [
       "JavaScript/TypeScript",
       "CSS",
@@ -1046,14 +1082,14 @@
       "markup": 3,
       "data": 6,
       "backend": 0,
-      "documentation": 1,
+      "documentation": 2,
       "script": 0,
       "other": 0
     },
     "architecture": "Frontend-focused"
   },
   "stats": {
-    "totalFiles": 25,
+    "totalFiles": 26,
     "aiAnalyzed": 0
   }
 }
