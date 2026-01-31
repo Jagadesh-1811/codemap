@@ -1,0 +1,565 @@
+.structure-tree {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0; /* Critical for flex child overflow */
+    background: transparent;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Project Summary */
+.project-summary {
+    flex-shrink: 0;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, rgba(0, 217, 255, 0.08), rgba(157, 78, 221, 0.08));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.project-summary h3 {
+    margin: 0 0 10px 0;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.project-description {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 13px;
+    margin: 0 0 12px 0;
+    line-height: 1.5;
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.tech-badge {
+    background: rgba(0, 217, 255, 0.15);
+    color: #00d9ff;
+    padding: 4px 10px;
+    border-radius: 14px;
+    font-size: 11px;
+    font-weight: 500;
+    border: 1px solid rgba(0, 217, 255, 0.2);
+}
+
+.architecture-badge {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 12px;
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+.features {
+    margin-top: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+}
+
+.features ul {
+    margin: 6px 0 0 0;
+    padding-left: 20px;
+}
+
+.features li {
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+
+/* View Controls */
+.view-controls {
+    flex-shrink: 0;
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.view-controls button {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.view-controls button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.view-controls button.active {
+    background: rgba(0, 217, 255, 0.2);
+    color: #00d9ff;
+    border-color: rgba(0, 217, 255, 0.4);
+}
+
+/* Tree Content */
+.tree-content {
+    flex: 1;
+    min-height: 0; /* Critical for scrolling */
+    overflow-y: auto;
+    padding: 12px 16px;
+}
+
+/* Tree Node */
+.tree-node {
+    font-family: 'SF Mono', 'Monaco', 'Consolas', 'Liberation Mono', monospace;
+    font-size: 13px;
+}
+
+.tree-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2px;
+}
+
+.tree-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.tree-item.folder {
+    font-weight: 600;
+}
+
+.expand-icon {
+    font-size: 10px;
+    width: 14px;
+    color: rgba(255, 255, 255, 0.5);
+    transition: transform 0.2s;
+}
+
+.node-icon {
+    font-size: 14px;
+}
+
+/* File extension badges - text-based icons */
+.file-ext-badge {
+    font-size: 9px;
+    font-weight: 700;
+    padding: 3px 6px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 32px;
+    text-align: center;
+    display: inline-block;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* File type colors */
+.file-ext-badge.jsx,
+.file-ext-badge.tsx {
+    background: rgba(97, 218, 251, 0.15);
+    color: #61dafb;
+    border-color: rgba(97, 218, 251, 0.2);
+}
+
+.file-ext-badge.js,
+.file-ext-badge.ts {
+    background: rgba(247, 223, 30, 0.15);
+    color: #f7df1e;
+    border-color: rgba(247, 223, 30, 0.2);
+}
+
+.file-ext-badge.css,
+.file-ext-badge.scss {
+    background: rgba(38, 77, 228, 0.15);
+    color: #42a5f5;
+    border-color: rgba(38, 77, 228, 0.2);
+}
+
+.file-ext-badge.html {
+    background: rgba(227, 79, 38, 0.15);
+    color: #e34f26;
+    border-color: rgba(227, 79, 38, 0.2);
+}
+
+.file-ext-badge.json,
+.file-ext-badge.cfg {
+    background: rgba(255, 159, 67, 0.15);
+    color: #ff9f43;
+    border-color: rgba(255, 159, 67, 0.2);
+}
+
+.file-ext-badge.md,
+.file-ext-badge.doc {
+    background: rgba(157, 78, 221, 0.15);
+    color: #9d4edd;
+    border-color: rgba(157, 78, 221, 0.2);
+}
+
+/* Folder badge */
+.file-ext-badge.dir,
+.tree-item.folder .file-ext-badge {
+    background: rgba(255, 217, 61, 0.15);
+    color: #ffd93d;
+    border-color: rgba(255, 217, 61, 0.2);
+}
+
+.node-name {
+    flex: 1;
+    font-weight: 500;
+}
+
+.layer-badge {
+    font-size: 9px;
+    padding: 3px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.layer-badge.frontend {
+    background: rgba(0, 217, 255, 0.2);
+    color: #00d9ff;
+}
+
+.layer-badge.router {
+    background: rgba(255, 107, 107, 0.2);
+    color: #ff6b6b;
+}
+
+.layer-badge.database {
+    background: rgba(255, 217, 61, 0.2);
+    color: #ffd93d;
+}
+
+.layer-badge.backend {
+    background: rgba(107, 203, 119, 0.2);
+    color: #6bcb77;
+}
+
+.layer-badge.configuration {
+    background: rgba(255, 159, 67, 0.2);
+    color: #ff9f43;
+}
+
+.layer-badge.utility {
+    background: rgba(157, 78, 221, 0.2);
+    color: #9d4edd;
+}
+
+.tree-children {
+    margin-top: 2px;
+}
+
+/* Layers View */
+.layers-view,
+.types-view {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.layer-group,
+.type-group {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.layer-header,
+.type-header {
+    margin: 0;
+    padding: 10px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.layer-header.frontend {
+    background: rgba(0, 217, 255, 0.15);
+}
+
+.layer-header.router {
+    background: rgba(255, 107, 107, 0.15);
+}
+
+.layer-header.database {
+    background: rgba(255, 217, 61, 0.15);
+}
+
+.layer-header.backend {
+    background: rgba(107, 203, 119, 0.15);
+}
+
+.layer-header.configuration {
+    background: rgba(255, 159, 67, 0.15);
+}
+
+.layer-header.utility {
+    background: rgba(157, 78, 221, 0.15);
+}
+
+.type-header.code {
+    background: rgba(0, 217, 255, 0.15);
+}
+
+.type-header.style {
+    background: rgba(255, 107, 157, 0.15);
+}
+
+.type-header.markup {
+    background: rgba(255, 165, 2, 0.15);
+}
+
+.type-header.data {
+    background: rgba(255, 159, 67, 0.15);
+}
+
+.type-header.documentation {
+    background: rgba(162, 155, 254, 0.15);
+}
+
+.type-header.script {
+    background: rgba(253, 121, 168, 0.15);
+}
+
+.type-header.backend {
+    background: rgba(107, 203, 119, 0.15);
+}
+
+.layer-files,
+.type-files {
+    padding: 8px;
+}
+
+.layer-file,
+.type-file {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 12px;
+    transition: background 0.15s;
+}
+
+.layer-file:hover,
+.type-file:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Scrollbar styling */
+.tree-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.tree-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.tree-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.tree-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* ========================================
+   HIERARCHY VIEW - Dependency Tree Styles
+   ======================================== */
+
+.hierarchy-view {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.hierarchy-legend {
+    display: flex;
+    gap: 20px;
+    padding: 10px 14px;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+    flex-wrap: wrap;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hierarchy-legend .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.hierarchy-tree {
+    font-family: 'SF Mono', 'Monaco', 'Consolas', 'Fira Code', monospace;
+    font-size: 13px;
+}
+
+.hierarchy-node {
+    line-height: 1.5;
+}
+
+.hierarchy-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2px;
+}
+
+.hierarchy-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.hierarchy-item.selected {
+    background: rgba(0, 217, 255, 0.12);
+    border-left: 3px solid #00d9ff;
+    padding-left: 9px;
+}
+
+.tree-prefix {
+    color: rgba(255, 255, 255, 0.25);
+    font-weight: 300;
+    white-space: pre;
+    user-select: none;
+}
+
+.hierarchy-item .expand-icon {
+    font-size: 10px;
+    width: 14px;
+    color: rgba(255, 255, 255, 0.5);
+    transition: transform 0.15s;
+}
+
+.hierarchy-item .node-icon {
+    font-size: 14px;
+}
+
+.hierarchy-item .node-name {
+    flex: 1;
+    font-weight: 500;
+}
+
+.hierarchy-item .layer-badge {
+    font-size: 9px;
+    padding: 3px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.dep-info {
+    display: flex;
+    gap: 6px;
+    margin-left: 10px;
+}
+
+.imports-count {
+    color: #00d9ff;
+    font-size: 11px;
+    font-weight: 600;
+    background: rgba(0, 217, 255, 0.12);
+    padding: 3px 7px;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 217, 255, 0.2);
+}
+
+.dependents-count {
+    color: #6bcb77;
+    font-size: 11px;
+    font-weight: 600;
+    background: rgba(107, 203, 119, 0.12);
+    padding: 3px 7px;
+    border-radius: 6px;
+    border: 1px solid rgba(107, 203, 119, 0.2);
+}
+
+.circular-badge {
+    font-size: 9px;
+    font-weight: 700;
+    margin-left: 4px;
+    padding: 3px 6px;
+    border-radius: 6px;
+    background: rgba(255, 107, 107, 0.15);
+    color: #ff6b6b;
+    border: 1px solid rgba(255, 107, 107, 0.2);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.hierarchy-children {
+    margin-left: 0;
+    border-left: 1px dashed rgba(255, 255, 255, 0.1);
+    margin-top: 2px;
+}
+
+/* No data state */
+.no-data {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+}
+
+/* View controls improvements */
+.view-controls button {
+    position: relative;
+}
+
+.view-controls button:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    white-space: nowrap;
+    z-index: 100;
+    margin-bottom: 4px;
+}

@@ -1,0 +1,69 @@
+{
+    "name": "codemap-neural-engine",
+    "displayName": "CodeMap Neural Engine",
+    "publisher": "codemap",
+    "description": "AI-powered codebase visualization with Gemini summaries and D3.js force graphs",
+    "version": "0.1.5",
+    "icon": "icon.png",
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "categories": [
+        "Visualization",
+        "Machine Learning"
+    ],
+    "activationEvents": [
+        "*"
+    ],
+    "main": "./src/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "codemap.start",
+                "title": "CodeMap: Start",
+                "icon": "$(graph)"
+            },
+            {
+                "command": "codemap.analyze",
+                "title": "CodeMap: Analyze Workspace"
+            },
+            {
+                "command": "codemap.showGraph",
+                "title": "CodeMap: Show Visualization"
+            },
+            {
+                "command": "codemap.setApiKey",
+                "title": "CodeMap: Set Gemini API Key"
+            }
+        ],
+        "configuration": {
+            "title": "CodeMap Neural Engine",
+            "properties": {
+                "codemap.geminiApiKey": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Your Gemini API Key for AI-powered summaries"
+                },
+                "codemap.enableAI": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable AI-powered summaries (requires API key)"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "lint": "eslint src",
+        "package": "vsce package"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.85.0",
+        "eslint": "^8.56.0"
+    },
+    "dependencies": {
+        "@babel/parser": "^7.23.0",
+        "@babel/traverse": "^7.23.0",
+        "@google/generative-ai": "^0.21.0",
+        "d3": "^7.9.0"
+    }
+}

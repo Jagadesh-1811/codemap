@@ -1,0 +1,1059 @@
+{
+  "tree": {
+    "name": "vs",
+    "path": "d:\\vs",
+    "type": "folder",
+    "attributes": {
+      "purpose": "Contains 3 items",
+      "folderType": "component",
+      "aiGenerated": false
+    },
+    "children": [
+      {
+        "name": "extension",
+        "path": "d:\\vs\\extension",
+        "type": "folder",
+        "attributes": {
+          "purpose": "Contains 3 items",
+          "folderType": "component",
+          "aiGenerated": false
+        },
+        "children": [
+          {
+            "name": "package-lock.json",
+            "path": "d:\\vs\\extension\\package-lock.json",
+            "type": "file",
+            "fileCategory": "data",
+            "extension": ".json",
+            "attributes": {
+              "layer": "Configuration",
+              "complexity": 50,
+              "summary": "Configuration for package-lock",
+              "keywords": [
+                "Configuration",
+                "Dependencies"
+              ],
+              "dependencies": [],
+              "fileType": "data",
+              "aiGenerated": false
+            }
+          },
+          {
+            "name": "package.json",
+            "path": "d:\\vs\\extension\\package.json",
+            "type": "file",
+            "fileCategory": "data",
+            "extension": ".json",
+            "attributes": {
+              "layer": "Utility",
+              "complexity": 13,
+              "summary": "Configuration for package",
+              "keywords": [
+                "Configuration",
+                "NPM Scripts",
+                "Dependencies"
+              ],
+              "dependencies": [],
+              "fileType": "data",
+              "aiGenerated": false
+            }
+          },
+          {
+            "name": "src",
+            "path": "d:\\vs\\extension\\src",
+            "type": "folder",
+            "attributes": {
+              "purpose": "Contains 4 items",
+              "folderType": "component",
+              "aiGenerated": false
+            },
+            "children": [
+              {
+                "name": "analyzer.js",
+                "path": "d:\\vs\\extension\\src\\analyzer.js",
+                "type": "file",
+                "fileCategory": "code",
+                "extension": ".js",
+                "attributes": {
+                  "layer": "Frontend",
+                  "complexity": 100,
+                  "summary": "Renders the analyzer UI component",
+                  "keywords": [],
+                  "dependencies": [],
+                  "fileType": "code",
+                  "aiGenerated": false
+                }
+              },
+              {
+                "name": "extension.js",
+                "path": "d:\\vs\\extension\\src\\extension.js",
+                "type": "file",
+                "fileCategory": "code",
+                "extension": ".js",
+                "attributes": {
+                  "layer": "Utility",
+                  "complexity": 30,
+                  "summary": "Provides extension utilities",
+                  "keywords": [],
+                  "dependencies": [],
+                  "fileType": "code",
+                  "aiGenerated": false
+                }
+              },
+              {
+                "name": "gemini.js",
+                "path": "d:\\vs\\extension\\src\\gemini.js",
+                "type": "file",
+                "fileCategory": "code",
+                "extension": ".js",
+                "attributes": {
+                  "layer": "Router",
+                  "complexity": 100,
+                  "summary": "Handles gemini API routes",
+                  "keywords": [],
+                  "dependencies": [],
+                  "fileType": "code",
+                  "aiGenerated": false
+                }
+              },
+              {
+                "name": "webview.js",
+                "path": "d:\\vs\\extension\\src\\webview.js",
+                "type": "file",
+                "fileCategory": "code",
+                "extension": ".js",
+                "attributes": {
+                  "layer": "Frontend",
+                  "complexity": 23,
+                  "summary": "Renders the webview UI component",
+                  "keywords": [],
+                  "dependencies": [],
+                  "fileType": "code",
+                  "aiGenerated": false
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "knowledge-map.json",
+        "path": "d:\\vs\\knowledge-map.json",
+        "type": "file",
+        "fileCategory": "data",
+        "extension": ".json",
+        "attributes": {
+          "layer": "Configuration",
+          "complexity": 50,
+          "summary": "Configuration for knowledge-map",
+          "keywords": [
+            "Configuration",
+            "Dependencies"
+          ],
+          "dependencies": [],
+          "fileType": "data",
+          "aiGenerated": false
+        }
+      },
+      {
+        "name": "webview",
+        "path": "d:\\vs\\webview",
+        "type": "folder",
+        "attributes": {
+          "purpose": "Contains 8 items",
+          "folderType": "component",
+          "aiGenerated": false
+        },
+        "children": [
+          {
+            "name": "eslint.config.js",
+            "path": "d:\\vs\\webview\\eslint.config.js",
+            "type": "file",
+            "fileCategory": "code",
+            "extension": ".js",
+            "attributes": {
+              "layer": "Frontend",
+              "complexity": 10,
+              "summary": "Renders the eslint.config UI component",
+              "keywords": [],
+              "dependencies": [],
+              "fileType": "code",
+              "aiGenerated": false
+            }
+          },
+          {
+            "name": "index.html",
+            "path": "d:\\vs\\webview\\index.html",
+            "type": "file",
+            "fileCategory": "markup",
+            "extension": ".html",
+            "attributes": {
+              "layer": "Frontend",
+              "complexity": 10,
+              "summary": "HTML structure for index",
+              "keywords": [],
+              "dependencies": [
+                "vite.svg",
+                "main.jsx"
+              ],
+              "fileType": "markup",
+              "aiGenerated": false
+            }
+          },
+          {
+            "name": "package-lock.json",
+            "path": "d:\\vs\\webview\\package-lock.json",
+            "type": "file",
+            "fileCategory": "data",
+            "extension": ".json",
+            "attributes": {
+              "layer": "Configuration",
+              "complexity": 50,
+              "summary": "Configuration for package-lock",
+              "keywords": [
+                "Configuration",
+                "Dependencies"
+              ],
+              "dependencies": [],
+              "fileType": "data",
+              "aiGenerated": false
+            }
+          },
+          {
+            "name": "package.json",
+            "path": "d:\\vs\\webview\\package.json",
+            "type": "file",
+            "fileCategory": "data",
+            "extension": ".json",
+            "attributes": {
+              "layer": "Utility",
+              "complexity": 11,
+              "summary": "Configuration for package",
+              "keywords": [
+                "Configuration",
+                "NPM Scripts",
+                "Dependencies"
+              ],
+              "dependencies": [],
+              "fileType": "data",
+              "aiGenerated": false
+            }
+          },
+          {
+            "name": "public",
+            "path": "d:\\vs\\webview\\public",
+            "type": "folder",
+            "attributes": {
+              "purpose": "Contains 2 items",
+              "folderType": "component",
+              "aiGenerated": false
+            },
+            "children": [
+              {
+                "name": "analysis-data.json",
+                "path": "d:\\vs\\webview\\public\\analysis-data.json",
+                "type": "file",
+                "fileCategory": "data",
+                "extension": ".json",
+                "attributes": {
+                  "layer": "Configuration",
+                  "complexity": 50,
+                  "summary": "Configuration for analysis-data",
+                  "keywords": [
+                    "Configuration",
+                    "Dependencies"
+                  ],
+                  "dependencies": [],
+                  "fileType": "data",
+                  "aiGenerated": false
+                }
+              },
+              {
+                "name": "vite.svg",
+                "path": "d:\\vs\\webview\\public\\vite.svg",
+                "type": "file",
+                "fileCategory": "markup",
+                "extension": ".svg",
+                "attributes": {
+                  "layer": "Utility",
+                  "complexity": 10,
+                  "summary": "HTML structure for vite",
+                  "keywords": [
+                    "SVG"
+                  ],
+                  "dependencies": [],
+                  "fileType": "markup",
+                  "aiGenerated": false
+                }
+              }
+            ]
+          },
+          {
+            "name": "README.md",
+            "path": "d:\\vs\\webview\\README.md",
+            "type": "file",
+            "fileCategory": "documentation",
+            "extension": ".md",
+            "attributes": {
+              "layer": "Utility",
+              "complexity": 10,
+              "summary": "Documentation for README",
+              "keywords": [
+                "Documentation",
+                "Markdown"
+              ],
+              "dependencies": [],
+              "fileType": "documentation",
+              "aiGenerated": false
+            }
+          },
+          {
+            "name": "src",
+            "path": "d:\\vs\\webview\\src",
+            "type": "folder",
+            "attributes": {
+              "purpose": "Contains 6 items",
+              "folderType": "component",
+              "aiGenerated": false
+            },
+            "children": [
+              {
+                "name": "App.css",
+                "path": "d:\\vs\\webview\\src\\App.css",
+                "type": "file",
+                "fileCategory": "style",
+                "extension": ".css",
+                "attributes": {
+                  "layer": "Frontend",
+                  "complexity": 98,
+                  "summary": "Styles for App components",
+                  "keywords": [
+                    "Animation",
+                    "Flexbox"
+                  ],
+                  "dependencies": [],
+                  "fileType": "style",
+                  "aiGenerated": false
+                }
+              },
+              {
+                "name": "App.jsx",
+                "path": "d:\\vs\\webview\\src\\App.jsx",
+                "type": "file",
+                "fileCategory": "code",
+                "extension": ".jsx",
+                "attributes": {
+                  "layer": "Frontend",
+                  "complexity": 80,
+                  "summary": "Renders the App UI component",
+                  "keywords": [
+                    "React Hook",
+                    "JSX"
+                  ],
+                  "dependencies": [
+                    "LayeredGraph",
+                    "StructureTree",
+                    "App.css"
+                  ],
+                  "fileType": "code",
+                  "aiGenerated": false
+                }
+              },
+              {
+                "name": "assets",
+                "path": "d:\\vs\\webview\\src\\assets",
+                "type": "folder",
+                "attributes": {
+                  "purpose": "Contains 1 items",
+                  "folderType": "component",
+                  "aiGenerated": false
+                },
+                "children": [
+                  {
+                    "name": "react.svg",
+                    "path": "d:\\vs\\webview\\src\\assets\\react.svg",
+                    "type": "file",
+                    "fileCategory": "markup",
+                    "extension": ".svg",
+                    "attributes": {
+                      "layer": "Utility",
+                      "complexity": 10,
+                      "summary": "HTML structure for react",
+                      "keywords": [
+                        "SVG"
+                      ],
+                      "dependencies": [],
+                      "fileType": "markup",
+                      "aiGenerated": false
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "components",
+                "path": "d:\\vs\\webview\\src\\components",
+                "type": "folder",
+                "attributes": {
+                  "purpose": "Contains 5 items",
+                  "folderType": "component",
+                  "aiGenerated": false
+                },
+                "children": [
+                  {
+                    "name": "ForceGraph.jsx",
+                    "path": "d:\\vs\\webview\\src\\components\\ForceGraph.jsx",
+                    "type": "file",
+                    "fileCategory": "code",
+                    "extension": ".jsx",
+                    "attributes": {
+                      "layer": "Frontend",
+                      "complexity": 100,
+                      "summary": "Renders the ForceGraph UI component",
+                      "keywords": [
+                        "React Hook",
+                        "JSX"
+                      ],
+                      "dependencies": [],
+                      "fileType": "code",
+                      "aiGenerated": false
+                    }
+                  },
+                  {
+                    "name": "LayeredGraph.css",
+                    "path": "d:\\vs\\webview\\src\\components\\LayeredGraph.css",
+                    "type": "file",
+                    "fileCategory": "style",
+                    "extension": ".css",
+                    "attributes": {
+                      "layer": "Frontend",
+                      "complexity": 69,
+                      "summary": "Styles for LayeredGraph components",
+                      "keywords": [
+                        "Animation",
+                        "Flexbox"
+                      ],
+                      "dependencies": [],
+                      "fileType": "style",
+                      "aiGenerated": false
+                    }
+                  },
+                  {
+                    "name": "LayeredGraph.jsx",
+                    "path": "d:\\vs\\webview\\src\\components\\LayeredGraph.jsx",
+                    "type": "file",
+                    "fileCategory": "code",
+                    "extension": ".jsx",
+                    "attributes": {
+                      "layer": "Frontend",
+                      "complexity": 100,
+                      "summary": "Renders the LayeredGraph UI component",
+                      "keywords": [
+                        "React Hook",
+                        "JSX"
+                      ],
+                      "dependencies": [
+                        "LayeredGraph.css"
+                      ],
+                      "fileType": "code",
+                      "aiGenerated": false
+                    }
+                  },
+                  {
+                    "name": "StructureTree.css",
+                    "path": "d:\\vs\\webview\\src\\components\\StructureTree.css",
+                    "type": "file",
+                    "fileCategory": "style",
+                    "extension": ".css",
+                    "attributes": {
+                      "layer": "Frontend",
+                      "complexity": 100,
+                      "summary": "Styles for StructureTree components",
+                      "keywords": [
+                        "Animation",
+                        "Flexbox"
+                      ],
+                      "dependencies": [],
+                      "fileType": "style",
+                      "aiGenerated": false
+                    }
+                  },
+                  {
+                    "name": "StructureTree.jsx",
+                    "path": "d:\\vs\\webview\\src\\components\\StructureTree.jsx",
+                    "type": "file",
+                    "fileCategory": "code",
+                    "extension": ".jsx",
+                    "attributes": {
+                      "layer": "Frontend",
+                      "complexity": 100,
+                      "summary": "Renders the StructureTree UI component",
+                      "keywords": [
+                        "React Hook",
+                        "JSX"
+                      ],
+                      "dependencies": [
+                        "StructureTree.css"
+                      ],
+                      "fileType": "code",
+                      "aiGenerated": false
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "index.css",
+                "path": "d:\\vs\\webview\\src\\index.css",
+                "type": "file",
+                "fileCategory": "style",
+                "extension": ".css",
+                "attributes": {
+                  "layer": "Frontend",
+                  "complexity": 25,
+                  "summary": "Styles for index components",
+                  "keywords": [
+                    "Responsive",
+                    "CSS Variables",
+                    "Flexbox"
+                  ],
+                  "dependencies": [],
+                  "fileType": "style",
+                  "aiGenerated": false
+                }
+              },
+              {
+                "name": "main.jsx",
+                "path": "d:\\vs\\webview\\src\\main.jsx",
+                "type": "file",
+                "fileCategory": "code",
+                "extension": ".jsx",
+                "attributes": {
+                  "layer": "Frontend",
+                  "complexity": 10,
+                  "summary": "Renders the main UI component",
+                  "keywords": [
+                    "JSX"
+                  ],
+                  "dependencies": [
+                    "index.css",
+                    "App"
+                  ],
+                  "fileType": "code",
+                  "aiGenerated": false
+                }
+              }
+            ]
+          },
+          {
+            "name": "vite.config.js",
+            "path": "d:\\vs\\webview\\vite.config.js",
+            "type": "file",
+            "fileCategory": "code",
+            "extension": ".js",
+            "attributes": {
+              "layer": "Frontend",
+              "complexity": 10,
+              "summary": "Renders the vite.config UI component",
+              "keywords": [],
+              "dependencies": [],
+              "fileType": "code",
+              "aiGenerated": false
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "files": [
+    {
+      "name": "package-lock.json",
+      "path": "d:\\vs\\extension\\package-lock.json",
+      "type": "file",
+      "fileCategory": "data",
+      "extension": ".json",
+      "attributes": {
+        "layer": "Configuration",
+        "complexity": 50,
+        "summary": "Configuration for package-lock",
+        "keywords": [
+          "Configuration",
+          "Dependencies"
+        ],
+        "dependencies": [],
+        "fileType": "data",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "package.json",
+      "path": "d:\\vs\\extension\\package.json",
+      "type": "file",
+      "fileCategory": "data",
+      "extension": ".json",
+      "attributes": {
+        "layer": "Utility",
+        "complexity": 13,
+        "summary": "Configuration for package",
+        "keywords": [
+          "Configuration",
+          "NPM Scripts",
+          "Dependencies"
+        ],
+        "dependencies": [],
+        "fileType": "data",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "analyzer.js",
+      "path": "d:\\vs\\extension\\src\\analyzer.js",
+      "type": "file",
+      "fileCategory": "code",
+      "extension": ".js",
+      "attributes": {
+        "layer": "Frontend",
+        "complexity": 100,
+        "summary": "Renders the analyzer UI component",
+        "keywords": [],
+        "dependencies": [],
+        "fileType": "code",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "extension.js",
+      "path": "d:\\vs\\extension\\src\\extension.js",
+      "type": "file",
+      "fileCategory": "code",
+      "extension": ".js",
+      "attributes": {
+        "layer": "Utility",
+        "complexity": 30,
+        "summary": "Provides extension utilities",
+        "keywords": [],
+        "dependencies": [],
+        "fileType": "code",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "gemini.js",
+      "path": "d:\\vs\\extension\\src\\gemini.js",
+      "type": "file",
+      "fileCategory": "code",
+      "extension": ".js",
+      "attributes": {
+        "layer": "Router",
+        "complexity": 100,
+        "summary": "Handles gemini API routes",
+        "keywords": [],
+        "dependencies": [],
+        "fileType": "code",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "webview.js",
+      "path": "d:\\vs\\extension\\src\\webview.js",
+      "type": "file",
+      "fileCategory": "code",
+      "extension": ".js",
+      "attributes": {
+        "layer": "Frontend",
+        "complexity": 23,
+        "summary": "Renders the webview UI component",
+        "keywords": [],
+        "dependencies": [],
+        "fileType": "code",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "knowledge-map.json",
+      "path": "d:\\vs\\knowledge-map.json",
+      "type": "file",
+      "fileCategory": "data",
+      "extension": ".json",
+      "attributes": {
+        "layer": "Configuration",
+        "complexity": 50,
+        "summary": "Configuration for knowledge-map",
+        "keywords": [
+          "Configuration",
+          "Dependencies"
+        ],
+        "dependencies": [],
+        "fileType": "data",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "eslint.config.js",
+      "path": "d:\\vs\\webview\\eslint.config.js",
+      "type": "file",
+      "fileCategory": "code",
+      "extension": ".js",
+      "attributes": {
+        "layer": "Frontend",
+        "complexity": 10,
+        "summary": "Renders the eslint.config UI component",
+        "keywords": [],
+        "dependencies": [],
+        "fileType": "code",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "index.html",
+      "path": "d:\\vs\\webview\\index.html",
+      "type": "file",
+      "fileCategory": "markup",
+      "extension": ".html",
+      "attributes": {
+        "layer": "Frontend",
+        "complexity": 10,
+        "summary": "HTML structure for index",
+        "keywords": [],
+        "dependencies": [
+          "vite.svg",
+          "main.jsx"
+        ],
+        "fileType": "markup",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "package-lock.json",
+      "path": "d:\\vs\\webview\\package-lock.json",
+      "type": "file",
+      "fileCategory": "data",
+      "extension": ".json",
+      "attributes": {
+        "layer": "Configuration",
+        "complexity": 50,
+        "summary": "Configuration for package-lock",
+        "keywords": [
+          "Configuration",
+          "Dependencies"
+        ],
+        "dependencies": [],
+        "fileType": "data",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "package.json",
+      "path": "d:\\vs\\webview\\package.json",
+      "type": "file",
+      "fileCategory": "data",
+      "extension": ".json",
+      "attributes": {
+        "layer": "Utility",
+        "complexity": 11,
+        "summary": "Configuration for package",
+        "keywords": [
+          "Configuration",
+          "NPM Scripts",
+          "Dependencies"
+        ],
+        "dependencies": [],
+        "fileType": "data",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "analysis-data.json",
+      "path": "d:\\vs\\webview\\public\\analysis-data.json",
+      "type": "file",
+      "fileCategory": "data",
+      "extension": ".json",
+      "attributes": {
+        "layer": "Configuration",
+        "complexity": 50,
+        "summary": "Configuration for analysis-data",
+        "keywords": [
+          "Configuration",
+          "Dependencies"
+        ],
+        "dependencies": [],
+        "fileType": "data",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "vite.svg",
+      "path": "d:\\vs\\webview\\public\\vite.svg",
+      "type": "file",
+      "fileCategory": "markup",
+      "extension": ".svg",
+      "attributes": {
+        "layer": "Utility",
+        "complexity": 10,
+        "summary": "HTML structure for vite",
+        "keywords": [
+          "SVG"
+        ],
+        "dependencies": [],
+        "fileType": "markup",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "README.md",
+      "path": "d:\\vs\\webview\\README.md",
+      "type": "file",
+      "fileCategory": "documentation",
+      "extension": ".md",
+      "attributes": {
+        "layer": "Utility",
+        "complexity": 10,
+        "summary": "Documentation for README",
+        "keywords": [
+          "Documentation",
+          "Markdown"
+        ],
+        "dependencies": [],
+        "fileType": "documentation",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "App.css",
+      "path": "d:\\vs\\webview\\src\\App.css",
+      "type": "file",
+      "fileCategory": "style",
+      "extension": ".css",
+      "attributes": {
+        "layer": "Frontend",
+        "complexity": 98,
+        "summary": "Styles for App components",
+        "keywords": [
+          "Animation",
+          "Flexbox"
+        ],
+        "dependencies": [],
+        "fileType": "style",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "App.jsx",
+      "path": "d:\\vs\\webview\\src\\App.jsx",
+      "type": "file",
+      "fileCategory": "code",
+      "extension": ".jsx",
+      "attributes": {
+        "layer": "Frontend",
+        "complexity": 80,
+        "summary": "Renders the App UI component",
+        "keywords": [
+          "React Hook",
+          "JSX"
+        ],
+        "dependencies": [
+          "LayeredGraph",
+          "StructureTree",
+          "App.css"
+        ],
+        "fileType": "code",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "react.svg",
+      "path": "d:\\vs\\webview\\src\\assets\\react.svg",
+      "type": "file",
+      "fileCategory": "markup",
+      "extension": ".svg",
+      "attributes": {
+        "layer": "Utility",
+        "complexity": 10,
+        "summary": "HTML structure for react",
+        "keywords": [
+          "SVG"
+        ],
+        "dependencies": [],
+        "fileType": "markup",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "ForceGraph.jsx",
+      "path": "d:\\vs\\webview\\src\\components\\ForceGraph.jsx",
+      "type": "file",
+      "fileCategory": "code",
+      "extension": ".jsx",
+      "attributes": {
+        "layer": "Frontend",
+        "complexity": 100,
+        "summary": "Renders the ForceGraph UI component",
+        "keywords": [
+          "React Hook",
+          "JSX"
+        ],
+        "dependencies": [],
+        "fileType": "code",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "LayeredGraph.css",
+      "path": "d:\\vs\\webview\\src\\components\\LayeredGraph.css",
+      "type": "file",
+      "fileCategory": "style",
+      "extension": ".css",
+      "attributes": {
+        "layer": "Frontend",
+        "complexity": 69,
+        "summary": "Styles for LayeredGraph components",
+        "keywords": [
+          "Animation",
+          "Flexbox"
+        ],
+        "dependencies": [],
+        "fileType": "style",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "LayeredGraph.jsx",
+      "path": "d:\\vs\\webview\\src\\components\\LayeredGraph.jsx",
+      "type": "file",
+      "fileCategory": "code",
+      "extension": ".jsx",
+      "attributes": {
+        "layer": "Frontend",
+        "complexity": 100,
+        "summary": "Renders the LayeredGraph UI component",
+        "keywords": [
+          "React Hook",
+          "JSX"
+        ],
+        "dependencies": [
+          "LayeredGraph.css"
+        ],
+        "fileType": "code",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "StructureTree.css",
+      "path": "d:\\vs\\webview\\src\\components\\StructureTree.css",
+      "type": "file",
+      "fileCategory": "style",
+      "extension": ".css",
+      "attributes": {
+        "layer": "Frontend",
+        "complexity": 100,
+        "summary": "Styles for StructureTree components",
+        "keywords": [
+          "Animation",
+          "Flexbox"
+        ],
+        "dependencies": [],
+        "fileType": "style",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "StructureTree.jsx",
+      "path": "d:\\vs\\webview\\src\\components\\StructureTree.jsx",
+      "type": "file",
+      "fileCategory": "code",
+      "extension": ".jsx",
+      "attributes": {
+        "layer": "Frontend",
+        "complexity": 100,
+        "summary": "Renders the StructureTree UI component",
+        "keywords": [
+          "React Hook",
+          "JSX"
+        ],
+        "dependencies": [
+          "StructureTree.css"
+        ],
+        "fileType": "code",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "index.css",
+      "path": "d:\\vs\\webview\\src\\index.css",
+      "type": "file",
+      "fileCategory": "style",
+      "extension": ".css",
+      "attributes": {
+        "layer": "Frontend",
+        "complexity": 25,
+        "summary": "Styles for index components",
+        "keywords": [
+          "Responsive",
+          "CSS Variables",
+          "Flexbox"
+        ],
+        "dependencies": [],
+        "fileType": "style",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "main.jsx",
+      "path": "d:\\vs\\webview\\src\\main.jsx",
+      "type": "file",
+      "fileCategory": "code",
+      "extension": ".jsx",
+      "attributes": {
+        "layer": "Frontend",
+        "complexity": 10,
+        "summary": "Renders the main UI component",
+        "keywords": [
+          "JSX"
+        ],
+        "dependencies": [
+          "index.css",
+          "App"
+        ],
+        "fileType": "code",
+        "aiGenerated": false
+      }
+    },
+    {
+      "name": "vite.config.js",
+      "path": "d:\\vs\\webview\\vite.config.js",
+      "type": "file",
+      "fileCategory": "code",
+      "extension": ".js",
+      "attributes": {
+        "layer": "Frontend",
+        "complexity": 10,
+        "summary": "Renders the vite.config UI component",
+        "keywords": [],
+        "dependencies": [],
+        "fileType": "code",
+        "aiGenerated": false
+      }
+    }
+  ],
+  "projectSummary": {
+    "description": "Project with 25 analyzable files",
+    "techStack": [
+      "JavaScript/TypeScript",
+      "CSS",
+      "HTML"
+    ],
+    "stats": {
+      "code": 11,
+      "style": 4,
+      "markup": 3,
+      "data": 6,
+      "backend": 0,
+      "documentation": 1,
+      "script": 0,
+      "other": 0
+    },
+    "architecture": "Frontend-focused"
+  },
+  "stats": {
+    "totalFiles": 25,
+    "aiAnalyzed": 0
+  }
+}
