@@ -888,6 +888,7 @@ function getWebviewContent(data, webview) {
         
         // Render fixed-position map
         function renderMap() {
+            console.log('renderMap called, allFiles:', allFiles.length);
             const svg = d3.select('#mapVisualization');
             svg.selectAll('*').remove();
             
@@ -895,10 +896,13 @@ function getWebviewContent(data, webview) {
             const width = container.clientWidth || 800;
             const height = Math.max(container.clientHeight || 500, 500);
             
+            console.log('SVG dimensions:', width, height);
+            
             // Set SVG dimensions explicitly
             svg.attr('width', width).attr('height', height);
             
             const { fileMap } = buildFileData();
+            console.log('fileMap size:', fileMap.size);
             
             // Larger values to match React webview
             const layerHeight = 120;
