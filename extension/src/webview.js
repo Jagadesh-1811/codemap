@@ -774,7 +774,7 @@ function getWebviewContent(data, webview) {
         function buildFileData() {
             const fileMap = new Map();
             allFiles.forEach(f => {
-                const baseName = f.name.replace(/\\.[^.]+$/, '');
+                const baseName = f.name.replace(/\.[^.]+$/, '');
                 const data = {
                     ...f,
                     baseName,
@@ -792,7 +792,7 @@ function getWebviewContent(data, webview) {
             allFiles.forEach(f => {
                 const deps = f.attributes?.dependencies || [];
                 deps.forEach(dep => {
-                    const depClean = dep.replace(/\\.[^.]+$/, '');
+                    const depClean = dep.replace(/\.[^.]+$/, '');
                     const target = fileMap.get(depClean);
                     if (target) {
                         const source = fileMap.get(f.name);
@@ -1337,12 +1337,14 @@ function getWebviewContent(data, webview) {
             }
         }
         
-        // Initialize
-        renderMapLegend();
-        renderLegend();
-        renderProjectSummary();
-        renderStructure();
-        renderMap();
+        // Initialize after a short delay to ensure DOM is ready
+        setTimeout(() => {
+            console.log('Initializing CodeMap, files:', allFiles.length);
+            renderMapLegend();
+            renderProjectSummary();
+            renderStructure();
+            renderMap();
+        }, 100);
         
         // Event Listeners (replacing inline onclick)
         document.getElementById('btnMap').addEventListener('click', () => switchTab('map'));
