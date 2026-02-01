@@ -3,7 +3,7 @@
     "displayName": "CodeMap Neural Engine",
     "publisher": "codemap",
     "description": "AI-powered codebase visualization with Gemini summaries and D3.js force graphs",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "icon": "icon.png",
     "engines": {
         "vscode": "^1.85.0"

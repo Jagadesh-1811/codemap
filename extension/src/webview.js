@@ -19,7 +19,6 @@ function getWebviewContent(data, webview, d3Uri) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-${nonce}' ${webview.cspSource}; style-src 'unsafe-inline'; img-src data:; connect-src https:;">
     <title>CodeMap Neural Engine</title>
-    <script nonce="${nonce}" src="${d3Uri}"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -715,6 +714,7 @@ function getWebviewContent(data, webview, d3Uri) {
         </main>
     </div>
     
+    <script nonce="${nonce}" src="${d3Uri}"></script>
     <script nonce="${nonce}">
         const files = ${filesJson};
         const tree = ${treeJson};
@@ -748,24 +748,42 @@ function getWebviewContent(data, webview, d3Uri) {
         let selectedNode = null;
         let currentTab = 'map';
         
-        // Flatten tree
+        // Flatten tree safely
         function flattenTree(node, result = []) {
+            if (!node || typeof node !== 'object') return result;
             if (node.type === 'file') result.push(node);
-            if (node.children) node.children.forEach(child => flattenTree(child, result));
+            if (node.children && Array.isArray(node.children)) {
+                node.children.forEach(child => flattenTree(child, result));
+            }
             return result;
         }
         
-        // Count AI analyzed
+        // Count AI analyzed safely
         function countAIAnalyzed(node) {
+            if (!node || typeof node !== 'object') return 0;
             let count = 0;
             if (node.type === 'file' && node.attributes?.aiGenerated) count++;
-            if (node.children) node.children.forEach(child => count += countAIAnalyzed(child));
+            if (node.children && Array.isArray(node.children)) {
+                node.children.forEach(child => count += countAIAnalyzed(child));
+            }
             return count;
         }
         
         const allFiles = tree ? flattenTree(tree) : files;
         const totalFiles = allFiles.length || stats.totalFiles;
         const aiAnalyzed = tree ? countAIAnalyzed(tree) : stats.aiAnalyzed || 0;
+        
+        // Debug info
+        console.log('CodeMap Debug:', {
+            hasTree: !!tree,
+            treeType: typeof tree,
+            hasFiles: !!files,
+            filesLength: files?.length,
+            allFilesLength: allFiles.length,
+            totalFiles,
+            aiAnalyzed,
+            statsObj: stats
+        });
         
         document.getElementById('totalFiles').textContent = totalFiles;
         document.getElementById('aiFiles').textContent = aiAnalyzed;
@@ -1592,6 +1610,13 @@ function getWebviewContent(data, webview, d3Uri) {
         
         function renderStructure() {
             const container = document.getElementById('treeContent');
+            
+            // Show message if no files
+            if (allFiles.length === 0) {
+                container.innerHTML = '<div style="padding:40px;text-align:center;color:#888"><p style="font-size:16px;margin-bottom:10px">No files to display</p><p style="font-size:13px;color:#666">Run CodeMap analysis on a folder with code files</p></div>';
+                return;
+            }
+            
             const { fileMap } = buildFileData();
             
             if (currentStructureView === 'hierarchy') {
