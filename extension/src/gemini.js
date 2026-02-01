@@ -117,7 +117,7 @@ Return JSON with these exact fields:
 {
     "layer": "Frontend" | "Backend" | "Router" | "Database" | "Utility",
     "complexity": 1-100,
-    "summary": "15 words max describing business value",
+    "summary": "Write 2 sentences (25-35 words) describing what this file does and its purpose",
     "keywords": ["tag1", "tag2", "tag3"]
 }`;
 

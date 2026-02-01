@@ -32,7 +32,6 @@
               {
                 "name": "d3.min.js",
                 "path": "d:\\vs\\extension\\lib\\d3.min.js",
-                "relativePath": "extension/lib/d3.min.js",
                 "type": "file",
                 "fileCategory": "code",
                 "extension": ".js",
@@ -57,7 +56,6 @@
           {
             "name": "package-lock.json",
             "path": "d:\\vs\\extension\\package-lock.json",
-            "relativePath": "extension/package-lock.json",
             "type": "file",
             "fileCategory": "data",
             "extension": ".json",
@@ -77,7 +75,6 @@
           {
             "name": "package.json",
             "path": "d:\\vs\\extension\\package.json",
-            "relativePath": "extension/package.json",
             "type": "file",
             "fileCategory": "data",
             "extension": ".json",
@@ -108,7 +105,6 @@
               {
                 "name": "analyzer.js",
                 "path": "d:\\vs\\extension\\src\\analyzer.js",
-                "relativePath": "extension/src/analyzer.js",
                 "type": "file",
                 "fileCategory": "code",
                 "extension": ".js",
@@ -125,7 +121,6 @@
               {
                 "name": "extension.js",
                 "path": "d:\\vs\\extension\\src\\extension.js",
-                "relativePath": "extension/src/extension.js",
                 "type": "file",
                 "fileCategory": "code",
                 "extension": ".js",
@@ -142,7 +137,6 @@
               {
                 "name": "gemini.js",
                 "path": "d:\\vs\\extension\\src\\gemini.js",
-                "relativePath": "extension/src/gemini.js",
                 "type": "file",
                 "fileCategory": "code",
                 "extension": ".js",
@@ -159,7 +153,6 @@
               {
                 "name": "webview.js",
                 "path": "d:\\vs\\extension\\src\\webview.js",
-                "relativePath": "extension/src/webview.js",
                 "type": "file",
                 "fileCategory": "code",
                 "extension": ".js",
@@ -180,7 +173,6 @@
       {
         "name": "knowledge-map.json",
         "path": "d:\\vs\\knowledge-map.json",
-        "relativePath": "knowledge-map.json",
         "type": "file",
         "fileCategory": "data",
         "extension": ".json",
@@ -200,7 +192,6 @@
       {
         "name": "README.md",
         "path": "d:\\vs\\README.md",
-        "relativePath": "README.md",
         "type": "file",
         "fileCategory": "documentation",
         "extension": ".md",
@@ -229,7 +220,6 @@
           {
             "name": "eslint.config.js",
             "path": "d:\\vs\\webview\\eslint.config.js",
-            "relativePath": "webview/eslint.config.js",
             "type": "file",
             "fileCategory": "code",
             "extension": ".js",
@@ -246,7 +236,6 @@
           {
             "name": "index.html",
             "path": "d:\\vs\\webview\\index.html",
-            "relativePath": "webview/index.html",
             "type": "file",
             "fileCategory": "markup",
             "extension": ".html",
@@ -266,7 +255,6 @@
           {
             "name": "package-lock.json",
             "path": "d:\\vs\\webview\\package-lock.json",
-            "relativePath": "webview/package-lock.json",
             "type": "file",
             "fileCategory": "data",
             "extension": ".json",
@@ -286,7 +274,6 @@
           {
             "name": "package.json",
             "path": "d:\\vs\\webview\\package.json",
-            "relativePath": "webview/package.json",
             "type": "file",
             "fileCategory": "data",
             "extension": ".json",
@@ -317,7 +304,6 @@
               {
                 "name": "analysis-data.json",
                 "path": "d:\\vs\\webview\\public\\analysis-data.json",
-                "relativePath": "webview/public/analysis-data.json",
                 "type": "file",
                 "fileCategory": "data",
                 "extension": ".json",
@@ -337,7 +323,6 @@
               {
                 "name": "vite.svg",
                 "path": "d:\\vs\\webview\\public\\vite.svg",
-                "relativePath": "webview/public/vite.svg",
                 "type": "file",
                 "fileCategory": "markup",
                 "extension": ".svg",
@@ -358,7 +343,6 @@
           {
             "name": "README.md",
             "path": "d:\\vs\\webview\\README.md",
-            "relativePath": "webview/README.md",
             "type": "file",
             "fileCategory": "documentation",
             "extension": ".md",
@@ -388,7 +372,6 @@
               {
                 "name": "App.css",
                 "path": "d:\\vs\\webview\\src\\App.css",
-                "relativePath": "webview/src/App.css",
                 "type": "file",
                 "fileCategory": "style",
                 "extension": ".css",
@@ -408,13 +391,12 @@
               {
                 "name": "App.jsx",
                 "path": "d:\\vs\\webview\\src\\App.jsx",
-                "relativePath": "webview/src/App.jsx",
                 "type": "file",
                 "fileCategory": "code",
                 "extension": ".jsx",
                 "attributes": {
                   "layer": "Frontend",
-                  "complexity": 80,
+                  "complexity": 75,
                   "summary": "Renders the App UI component",
                   "keywords": [
                     "React Hook",
@@ -442,7 +424,6 @@
                   {
                     "name": "react.svg",
                     "path": "d:\\vs\\webview\\src\\assets\\react.svg",
-                    "relativePath": "webview/src/assets/react.svg",
                     "type": "file",
                     "fileCategory": "markup",
                     "extension": ".svg",
@@ -473,7 +454,6 @@
                   {
                     "name": "ForceGraph.jsx",
                     "path": "d:\\vs\\webview\\src\\components\\ForceGraph.jsx",
-                    "relativePath": "webview/src/components/ForceGraph.jsx",
                     "type": "file",
                     "fileCategory": "code",
                     "extension": ".jsx",
@@ -493,7 +473,6 @@
                   {
                     "name": "LayeredGraph.css",
                     "path": "d:\\vs\\webview\\src\\components\\LayeredGraph.css",
-                    "relativePath": "webview/src/components/LayeredGraph.css",
                     "type": "file",
                     "fileCategory": "style",
                     "extension": ".css",
@@ -513,7 +492,6 @@
                   {
                     "name": "LayeredGraph.jsx",
                     "path": "d:\\vs\\webview\\src\\components\\LayeredGraph.jsx",
-                    "relativePath": "webview/src/components/LayeredGraph.jsx",
                     "type": "file",
                     "fileCategory": "code",
                     "extension": ".jsx",
@@ -535,7 +513,6 @@
                   {
                     "name": "StructureTree.css",
                     "path": "d:\\vs\\webview\\src\\components\\StructureTree.css",
-                    "relativePath": "webview/src/components/StructureTree.css",
                     "type": "file",
                     "fileCategory": "style",
                     "extension": ".css",
@@ -555,7 +532,6 @@
                   {
                     "name": "StructureTree.jsx",
                     "path": "d:\\vs\\webview\\src\\components\\StructureTree.jsx",
-                    "relativePath": "webview/src/components/StructureTree.jsx",
                     "type": "file",
                     "fileCategory": "code",
                     "extension": ".jsx",
@@ -579,7 +555,6 @@
               {
                 "name": "index.css",
                 "path": "d:\\vs\\webview\\src\\index.css",
-                "relativePath": "webview/src/index.css",
                 "type": "file",
                 "fileCategory": "style",
                 "extension": ".css",
@@ -600,7 +575,6 @@
               {
                 "name": "main.jsx",
                 "path": "d:\\vs\\webview\\src\\main.jsx",
-                "relativePath": "webview/src/main.jsx",
                 "type": "file",
                 "fileCategory": "code",
                 "extension": ".jsx",
@@ -624,7 +598,6 @@
           {
             "name": "vite.config.js",
             "path": "d:\\vs\\webview\\vite.config.js",
-            "relativePath": "webview/vite.config.js",
             "type": "file",
             "fileCategory": "code",
             "extension": ".js",
@@ -646,7 +619,6 @@
     {
       "name": "d3.min.js",
       "path": "d:\\vs\\extension\\lib\\d3.min.js",
-      "relativePath": "extension/lib/d3.min.js",
       "type": "file",
       "fileCategory": "code",
       "extension": ".js",
@@ -669,7 +641,6 @@
     {
       "name": "package-lock.json",
       "path": "d:\\vs\\extension\\package-lock.json",
-      "relativePath": "extension/package-lock.json",
       "type": "file",
       "fileCategory": "data",
       "extension": ".json",
@@ -689,7 +660,6 @@
     {
       "name": "package.json",
       "path": "d:\\vs\\extension\\package.json",
-      "relativePath": "extension/package.json",
       "type": "file",
       "fileCategory": "data",
       "extension": ".json",
@@ -710,7 +680,6 @@
     {
       "name": "analyzer.js",
       "path": "d:\\vs\\extension\\src\\analyzer.js",
-      "relativePath": "extension/src/analyzer.js",
       "type": "file",
       "fileCategory": "code",
       "extension": ".js",
@@ -727,7 +696,6 @@
     {
       "name": "extension.js",
       "path": "d:\\vs\\extension\\src\\extension.js",
-      "relativePath": "extension/src/extension.js",
       "type": "file",
       "fileCategory": "code",
       "extension": ".js",
@@ -744,7 +712,6 @@
     {
       "name": "gemini.js",
       "path": "d:\\vs\\extension\\src\\gemini.js",
-      "relativePath": "extension/src/gemini.js",
       "type": "file",
       "fileCategory": "code",
       "extension": ".js",
@@ -761,7 +728,6 @@
     {
       "name": "webview.js",
       "path": "d:\\vs\\extension\\src\\webview.js",
-      "relativePath": "extension/src/webview.js",
       "type": "file",
       "fileCategory": "code",
       "extension": ".js",
@@ -778,7 +744,6 @@
     {
       "name": "knowledge-map.json",
       "path": "d:\\vs\\knowledge-map.json",
-      "relativePath": "knowledge-map.json",
       "type": "file",
       "fileCategory": "data",
       "extension": ".json",
@@ -798,7 +763,6 @@
     {
       "name": "README.md",
       "path": "d:\\vs\\README.md",
-      "relativePath": "README.md",
       "type": "file",
       "fileCategory": "documentation",
       "extension": ".md",
@@ -817,7 +781,6 @@
     {
       "name": "eslint.config.js",
       "path": "d:\\vs\\webview\\eslint.config.js",
-      "relativePath": "webview/eslint.config.js",
       "type": "file",
       "fileCategory": "code",
       "extension": ".js",
@@ -834,7 +797,6 @@
     {
       "name": "index.html",
       "path": "d:\\vs\\webview\\index.html",
-      "relativePath": "webview/index.html",
       "type": "file",
       "fileCategory": "markup",
       "extension": ".html",
@@ -854,7 +816,6 @@
     {
       "name": "package-lock.json",
       "path": "d:\\vs\\webview\\package-lock.json",
-      "relativePath": "webview/package-lock.json",
       "type": "file",
       "fileCategory": "data",
       "extension": ".json",
@@ -874,7 +835,6 @@
     {
       "name": "package.json",
       "path": "d:\\vs\\webview\\package.json",
-      "relativePath": "webview/package.json",
       "type": "file",
       "fileCategory": "data",
       "extension": ".json",
@@ -895,7 +855,6 @@
     {
       "name": "analysis-data.json",
       "path": "d:\\vs\\webview\\public\\analysis-data.json",
-      "relativePath": "webview/public/analysis-data.json",
       "type": "file",
       "fileCategory": "data",
       "extension": ".json",
@@ -915,7 +874,6 @@
     {
       "name": "vite.svg",
       "path": "d:\\vs\\webview\\public\\vite.svg",
-      "relativePath": "webview/public/vite.svg",
       "type": "file",
       "fileCategory": "markup",
       "extension": ".svg",
@@ -934,7 +892,6 @@
     {
       "name": "README.md",
       "path": "d:\\vs\\webview\\README.md",
-      "relativePath": "webview/README.md",
       "type": "file",
       "fileCategory": "documentation",
       "extension": ".md",
@@ -954,7 +911,6 @@
     {
       "name": "App.css",
       "path": "d:\\vs\\webview\\src\\App.css",
-      "relativePath": "webview/src/App.css",
       "type": "file",
       "fileCategory": "style",
       "extension": ".css",
@@ -974,13 +930,12 @@
     {
       "name": "App.jsx",
       "path": "d:\\vs\\webview\\src\\App.jsx",
-      "relativePath": "webview/src/App.jsx",
       "type": "file",
       "fileCategory": "code",
       "extension": ".jsx",
       "attributes": {
         "layer": "Frontend",
-        "complexity": 80,
+        "complexity": 75,
         "summary": "Renders the App UI component",
         "keywords": [
           "React Hook",
@@ -998,7 +953,6 @@
     {
       "name": "react.svg",
       "path": "d:\\vs\\webview\\src\\assets\\react.svg",
-      "relativePath": "webview/src/assets/react.svg",
       "type": "file",
       "fileCategory": "markup",
       "extension": ".svg",
@@ -1017,7 +971,6 @@
     {
       "name": "ForceGraph.jsx",
       "path": "d:\\vs\\webview\\src\\components\\ForceGraph.jsx",
-      "relativePath": "webview/src/components/ForceGraph.jsx",
       "type": "file",
       "fileCategory": "code",
       "extension": ".jsx",
@@ -1037,7 +990,6 @@
     {
       "name": "LayeredGraph.css",
       "path": "d:\\vs\\webview\\src\\components\\LayeredGraph.css",
-      "relativePath": "webview/src/components/LayeredGraph.css",
       "type": "file",
       "fileCategory": "style",
       "extension": ".css",
@@ -1057,7 +1009,6 @@
     {
       "name": "LayeredGraph.jsx",
       "path": "d:\\vs\\webview\\src\\components\\LayeredGraph.jsx",
-      "relativePath": "webview/src/components/LayeredGraph.jsx",
       "type": "file",
       "fileCategory": "code",
       "extension": ".jsx",
@@ -1079,7 +1030,6 @@
     {
       "name": "StructureTree.css",
       "path": "d:\\vs\\webview\\src\\components\\StructureTree.css",
-      "relativePath": "webview/src/components/StructureTree.css",
       "type": "file",
       "fileCategory": "style",
       "extension": ".css",
@@ -1099,7 +1049,6 @@
     {
       "name": "StructureTree.jsx",
       "path": "d:\\vs\\webview\\src\\components\\StructureTree.jsx",
-      "relativePath": "webview/src/components/StructureTree.jsx",
       "type": "file",
       "fileCategory": "code",
       "extension": ".jsx",
@@ -1121,7 +1070,6 @@
     {
       "name": "index.css",
       "path": "d:\\vs\\webview\\src\\index.css",
-      "relativePath": "webview/src/index.css",
       "type": "file",
       "fileCategory": "style",
       "extension": ".css",
@@ -1142,7 +1090,6 @@
     {
       "name": "main.jsx",
       "path": "d:\\vs\\webview\\src\\main.jsx",
-      "relativePath": "webview/src/main.jsx",
       "type": "file",
       "fileCategory": "code",
       "extension": ".jsx",
@@ -1164,7 +1111,6 @@
     {
       "name": "vite.config.js",
       "path": "d:\\vs\\webview\\vite.config.js",
-      "relativePath": "webview/vite.config.js",
       "type": "file",
       "fileCategory": "code",
       "extension": ".js",

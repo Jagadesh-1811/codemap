@@ -136,21 +136,13 @@ function App() {
               <span className="badge-icon">F</span>
               <span className="badge-text">Files: {totalFiles}</span>
             </span>
-            <button
+            <span
               className={`stat-badge ai ${aiAnalyzedCount > 0 ? 'active' : 'inactive'}`}
-              onClick={() => {
-                // Try to communicate with VS Code extension
-                if (window.vscode) {
-                  window.vscode.postMessage({ command: 'analyzeWithAI' });
-                } else {
-                  alert('AI Analysis requires VS Code extension. Run from VS Code CodeMap command.');
-                }
-              }}
-              title="Click to analyze files with AI"
+              title="Files analyzed by Gemini AI"
             >
               <span className="badge-icon">AI</span>
               <span className="badge-text">AI Analyzed: {aiAnalyzedCount}</span>
-            </button>
+            </span>
           </div>
           <div className="tab-buttons">
             <button
