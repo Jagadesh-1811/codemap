@@ -43,7 +43,7 @@
 npx vsce package --allow-missing-repository --allow-star-activation
 
 # Install in VS Code
-code --install-extension codemap-neural-engine-0.1.5.vsix
+code --install-extension codemap-neural-engine-0.1.6.vsix
 ```
 
 ---
@@ -173,18 +173,7 @@ Access settings via `File > Preferences > Settings > CodeMap Neural Engine`
 - VS Code 1.85+
 - npm or yarn
 
-### Setup
 
-```bash
-# Extension development
-cd extension
-npm install
-
-# Webview development
-cd ../webview
-npm install
-npm run dev
-```
 
 ### Build
 
@@ -229,3 +218,4 @@ This project is licensed under the MIT License - see the [LICENSE](extension/LIC
   <a href="https://github.com/Jagadesh-1811/codemap">⭐ Star this repo if you find it useful!</a>
 
 </p>
+
